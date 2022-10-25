@@ -1,0 +1,83 @@
+.primary-button {
+  font-size: 15px;
+  border: 1px solid #0162e8;
+  outline: none !important;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 6px 15px;
+  transition: all 0.2s ease;
+  color: #ffffff;
+  background: #0162e8;
+
+  &:hover {
+    background: #025cd8;
+    border-color: #025cd8;
+  }
+}
+
+.light-button {
+  font-size: 15px;
+  outline: none !important;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 5px 15px;
+  transition: all 0.2s ease;
+  border: 1px solid #F5F8FA !important;
+  color: #A1A5B7;
+  background-color: #eef3f7;
+
+  &:hover {
+    background: #025cd8;
+  }
+}
+
+.danger-button {
+  font-size: 15px;
+  outline: none !important;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 5px 20px;
+  border: 1px solid $red-color;
+  color: $white-color;
+  background: $red-color;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $red-hover-color;
+    border: 1px solid $red-hover-color;
+  }
+}
+
+.submit-button {
+  background: $primary-color;
+  color: $white-color;
+  font-size: 15px;
+  outline: none;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 6px 16px;
+  letter-spacing: .25px;
+  border: 1px solid $primary-color;
+  transition: all .2s ease;
+
+  &:hover {
+    background: $primary-hover-color;
+  }
+}
+
+.reset-button {
+  background: #f8f9fa;
+  color: $black-color;
+  font-size: 15px;
+  outline: none;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 6px 16px;
+  letter-spacing: .25px;
+  border: 1px solid #f8f9fa;
+  transition: all .2s ease;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+}

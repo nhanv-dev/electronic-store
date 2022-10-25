@@ -1,0 +1,50 @@
+.pagination {
+  background: $bg-color-2;
+  padding: 16px 22px;
+  margin-top: 60px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  &__message {
+    font-size: 15px;
+    font-weight: 500;
+    color: $text-color;
+  }
+
+  &__container {
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      gap: 10px;
+
+      li {
+        a {
+          border-radius: 5px;
+          border: 1px solid #efefef;
+          background: transparent;
+          width: 32px;
+          height: 32px;
+          color: $text-color;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: 500;
+
+          &.active {
+            color: $white-color;
+            background: $primary-color;
+            border-color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+#login-form-container, #register-form-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .form-wrapper {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0 7px 14px 0, rgba(0, 0, 0, 0.12) 0 3px 6px 0;
+    padding: 42px;
+  }
+
+  .form-title {
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $primary-color;
+    text-transform: capitalize;
+  }
+
+  .form-field {
+    margin-bottom: 16px;
+
+    a {
+      font-size: 14px;
+      font-weight: 500;
+      color: $primary-color;
+      text-transform: capitalize;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: $text-color;
+      margin-bottom: 6px;
+      text-transform: capitalize;
+    }
+
+    input {
+      font-size: 16px;
+      line-height: 28px;
+      padding: 2px 16px;
+      width: 100%;
+      border: 1px solid #efefef;
+      border-radius: 4px;
+      outline-color: rgb(84 105 212 / 0.5);
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(60, 66, 87, 0.16) 0 0 0 1px,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0) 0 0 0 0;
+    }
+
+    input[type="submit"] {
+      background-color: $primary-color;
+      box-shadow: rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0.12) 0 1px 1px 0,
+      rgb(84, 105, 212) 0 0 0 1px,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(0, 0, 0, 0) 0 0 0 0,
+      rgba(60, 66, 87, 0.08) 0 2px 5px 0;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+
+  .field-checkbox {
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: $light-color;
+      text-transform: capitalize;
+      margin: 0;
+    }
+
+    input {
+      width: 20px;
+      height: 15px;
+      margin-right: 5px;
+      box-shadow: unset;
+      min-height: unset;
+    }
+  }
+
+  .invalid-message {
+    display: none;
+  }
+
+  input.is-invalid {
+    border-color: $red-color;
+  }
+
+  input.is-invalid + .invalid-message {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: $red-color;
+    line-height: 27px;
+  }
+}

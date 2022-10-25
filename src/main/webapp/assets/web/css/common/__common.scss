@@ -1,0 +1,90 @@
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $black-color;
+  background-color: $white-color;
+  font-weight: 400;
+}
+
+body::-webkit-scrollbar {
+  width: 14px;
+}
+
+body::-webkit-scrollbar-track {
+  background: $white-color;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 20px;
+  border: 4px solid $white-color;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9e9e9e;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 0
+}
+
+img {
+  max-width: 100%;
+}
+
+.bg-white {
+  background: $white-color;
+}
+
+.bg-light-color {
+  background: $light-color;
+}
+
+.tooltip-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: $white-color;
+}
+
+.border {
+  border: 1px solid #efefef;
+}
+
+.alertify-notifier .ajs-message.ajs-success {
+  background-color: $green-color !important;
+  border: $green-color !important;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: $white-color;
+}
+
+.alertify-notifier .ajs-message.ajs-error {
+  background-color: $red-color !important;
+  border: $red-color !important;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: $white-color;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: $primary-color;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 14px;
+  color: $primary-color;
+}

@@ -1,0 +1,103 @@
+.container {
+  max-width: 1200px;
+}
+
+.col-border {
+  border-left: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+
+  &:last-child {
+    border-right: 1px solid #efefef;
+  }
+}
+
+@include sx {
+  .col-border-sx-2:nth-child(2n+0) {
+    .product-card {
+      border-right: 1px solid #efefef;
+    }
+  }
+
+  .col-border-sx-2:nth-child(1), .col-border-sx-2:nth-child(2) {
+    .product-card {
+      border-top: 1px solid #efefef;
+    }
+  }
+}
+
+@include sm {
+  .col-border-sm-2:nth-child(2n+0) {
+    .product-card {
+      border-right: 1px solid #efefef;
+    }
+  }
+
+  .col-border-sm-2:nth-child(1), .col-border-sm-2:nth-child(2) {
+    .product-card {
+      border-top: 1px solid #efefef;
+    }
+  }
+}
+
+@include md {
+  .col-border-md-2:nth-child(2n+0) {
+    .product-card {
+      border-right: 1px solid #efefef;
+    }
+  }
+
+  .col-border-md-2:nth-child(1), .col-border-md-2:nth-child(2) {
+    .product-card {
+      border-top: 1px solid #efefef;
+    }
+  }
+}
+
+@include lg {
+  .col-border-lg-3:nth-child(3n+0) {
+    .product-card {
+      border-right: 1px solid #efefef;
+    }
+  }
+
+  .col-border-lg-3:nth-child(1), .col-border-lg-3:nth-child(2), .col-border-lg-3:nth-child(3) {
+    .product-card {
+      border-top: 1px solid #efefef;
+    }
+  }
+}
+
+@include xl {
+  .col-border-xl-4:nth-child(4n+0) {
+    .product-card {
+      border-right: 1px solid #efefef;
+    }
+  }
+
+  .col-border-xl-4:nth-child(1),
+  .col-border-xl-4:nth-child(2),
+  .col-border-xl-4:nth-child(3),
+  .col-border-xl-4:nth-child(4) {
+    .product-card {
+      border-top: 1px solid #efefef;
+    }
+  }
+  .col-border-xl-4:last-child .product-card {
+    border-right: none
+  }
+  .col-border-xl-5:nth-child(5n+0) {
+    .product-card {
+      border-right: 1px solid #efefef;
+    }
+  }
+
+  .col-border-xl-5:nth-child(1),
+  .col-border-xl-5:nth-child(2),
+  .col-border-xl-5:nth-child(3),
+  .col-border-xl-5:nth-child(4),
+  .col-border-xl-5:nth-child(5) {
+    .product-card {
+      border-top: 1px solid #efefef;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+// Font family
+$font-family: 'Roboto', sans-serif;
+
+// Color
+$black-color: #040404;
+$dark-color: #181C32;
+$white-color: #ffffff;
+$red-color: #dc3545;
+$red-hover-color: #bb2d3b;
+$green-color: #198754;
+$gray-color-400: #B5B5C3;
+$gray-color-500: #808191;
+$gray-color-600: #6c757d;
+$gray-color-700: #5E6278;
+$gray-color-800: #3F4254;
+$primary-color: #0162e8;
+$primary-hover-color: #025cd8;
+$secondary-color: #124fce;
+$bg-color-1: #F3F6F9;
+$bg-color-2: #F5F8FA;
+$text-color: #666666;
+$light-color: #999999;
+
+// Break points - Responsive
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$mobile-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

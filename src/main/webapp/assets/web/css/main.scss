@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// Base
+
+@import "common/_variables";
+@import "common/_common";
+@import "common/_layout";
+@import "common/_header";
+@import "common/_footer";
+@import "common/_history-product";
+@import "common/_products-section";
+
+// Other Components
+
+@import "components/_buttons";
+@import "components/_breadcrumb";
+@import "components/_pagination";
+@import "components/_login-register-form";
+@import "components/_notify";
+@import "components/_category-sidebar";
+@import "components/_header-list-card";
+@import "components/_wishlist";
+@import "components/_wishlist-card-header";
+
+// Product
+
+@import "product/_product-detail";
+@import "product/_product-card";
+@import "product/_product-card-list";
+@import "product/_product-modal";
+@import "product/_small-vertical-card";
+
+// Cart
+
+@import "cart/_cart-item";
+@import "cart/_cart-sidebar";
+@import "cart/_cart-detail";
+
+// Account
+
+@import "account/_profile";
+@import "account/_account-sidebar";
+@import "account/_history-order";
+
+// Pages
+
+@import "pages/_home";
+@import "pages/_payment";
+@import "pages/_compare";

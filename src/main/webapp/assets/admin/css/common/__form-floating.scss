@@ -1,0 +1,17 @@
+.form-floating {
+  label {
+    font-weight: 500;
+  }
+
+  input {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .25px;
+
+    &:focus-within, &:visited, &:focus {
+      box-shadow: none;
+      border: 1px solid $primary-color;
+      outline: none;
+    }
+  }
+}

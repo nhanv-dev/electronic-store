@@ -1,0 +1,61 @@
+.breadcrumb-container {
+  background-color: $bg-color-2;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  padding: 16px 24px;
+  border-radius: 5px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  box-shadow: 1px 3px 5px 0 rgb(210 217 237 / 30%);
+
+  a {
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-color;
+    position: relative;
+    display: block;
+    padding: 0 16px;
+    transition: all .2s ease;
+    text-transform: capitalize;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    width: max-content;
+
+
+    &:last-child {
+      color: $black-color;
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  a:first-child {
+    padding-left: 0;
+  }
+
+  a:last-child {
+    max-width: 500px;
+  }
+
+  a:not(:last-child) {
+    min-width: max-content;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%);
+      height: 14px;
+      width: 2px;
+      background-color: $light-color;
+    }
+  }
+}

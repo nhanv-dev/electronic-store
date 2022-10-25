@@ -1,0 +1,35 @@
+.profile {
+  background: $white-color;
+  border-radius: 5px;
+  padding: 24px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $black-50-color;
+  }
+
+  input {
+    border: 1px solid #efefef;
+    width: 100%;
+    font-size: 14px;
+    color: $black-50-color;
+    padding: 6px 16px;
+    border-radius: 5px;
+    background: $white-color;
+    max-width: 400px;
+
+    &:read-only {
+      opacity: .7;
+
+      &:focus, &:focus-visible, &:focus-within {
+        border: 1px solid #efefef;
+      }
+    }
+
+    &:focus, &:focus-visible, &:focus-within {
+      border: 1px solid #ccc;
+    }
+  }
+
+}

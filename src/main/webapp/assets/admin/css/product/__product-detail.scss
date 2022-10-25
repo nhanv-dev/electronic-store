@@ -1,0 +1,181 @@
+.detail-icon {
+  font-size: 18px;
+  border-color: #F5F8FA;
+  background-color: #F5F8FA;
+  min-width: 22px;
+  max-width: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  i {
+    color: #7E8299;
+    position: relative;
+    border-radius: 5px;
+    min-width: 22px;
+    max-width: 22px;
+    min-height: 22px;
+    max-height: 22px;
+
+    &:before {
+      border-radius: 5px;
+      vertical-align: middle;
+      position: absolute;
+      font-size: 20px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &:hover {
+    background-color: #DCFDFD;
+
+    i {
+      color: #04C8C8;
+    }
+  }
+}
+
+.product-detail {
+  padding: 0 32px 16px;
+  animation: blur .5s ease-in-out;
+  @keyframes blur {
+    from {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 270px;
+    min-width: 270px;
+    margin: 12px auto;
+    overflow: hidden;
+    scroll-behavior: smooth;
+
+    &__image {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      max-width: 80px;
+      min-width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      &:not(:first-child) {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      img {
+        height: auto;
+        border-radius: 4px;
+        width: 100%;
+      }
+    }
+
+    &__button-next, &__button-prev {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 50%;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50px;
+      background: $primary-color;
+      color: $white-color;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    &__button-prev {
+      left: -15px;
+      transform: translate(-100%, -50%);
+    }
+
+    &__button-next {
+      right: -15px;
+      transform: translate(100%, -50%);
+    }
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: auto;
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      border-radius: 4px;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__quantity {
+    font-size: 16px;
+    font-weight: 600;
+    color: $red-color;
+  }
+
+  &__sku, &__id {
+    font-size: 14px;
+    font-weight: 500;
+    color: $light-color;
+    letter-spacing: .25px;
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 500;
+    color: $black-color;
+  }
+
+  &__price {
+    font-size: 16px;
+    font-weight: 600;
+    color: $red-color;
+  }
+
+  &__desc {
+    font-size: 14px;
+    font-weight: 500;
+    color: $black-color;
+    line-height: 1.8;
+    margin-top: 5px;
+    padding: 16px;
+    background-color: #f7f8f9;
+    border-radius: 8px;
+  }
+}

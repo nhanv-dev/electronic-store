@@ -1,0 +1,38 @@
+.breadcrumb {
+  display: block;
+  margin-bottom: 0;
+  &__title {
+    color: $dark-color;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  &__content {
+    display: flex;
+    gap: 30px;
+
+    p {
+      position: relative;
+      font-size: 14px;
+      font-weight: 500;
+      color: #A1A5B7;
+      text-transform: capitalize;
+      &:last-child {
+        color: $dark-color;
+
+        &:after {
+          content: "";
+        }
+      }
+
+      &:after {
+        position: absolute;
+        content: "/";
+        right: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

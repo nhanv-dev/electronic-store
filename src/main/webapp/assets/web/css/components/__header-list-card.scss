@@ -1,0 +1,76 @@
+.header-list-card {
+  background: $bg-color-2;
+  padding: 12px 24px;
+  margin-bottom: 24px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .category-show {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+
+    &-grid, &-list {
+      outline: none;
+      color: #a1a1a1;
+      border: none;
+      background: transparent;
+      font-size: 20px;
+      transition: all .2s ease;
+
+      &.active, &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+
+  .category-right {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-end;
+
+    label {
+      min-width: max-content;
+      font-size: 14px;
+      font-weight: 500;
+      color: $text-color;
+    }
+
+    select {
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      width: max-content;
+      min-width: max-content;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+
+    .nice-select {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 12px;
+      padding-right: 36px;
+      min-width: 80px;
+      background-color: $white-color;
+      border: none !important;
+
+      .list {
+        min-width: 100%;
+      }
+
+      &:after {
+        height: 7px;
+        width: 7px;
+      }
+    }
+  }
+}

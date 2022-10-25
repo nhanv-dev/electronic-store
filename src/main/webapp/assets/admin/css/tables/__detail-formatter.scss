@@ -1,0 +1,101 @@
+.detail-formatter {
+  padding: 0 32px 16px;
+  animation: blur .5s ease-in-out;
+  @keyframes blur {
+    from {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    label {
+      font-size: 15px;
+      font-weight: 500;
+      color: #7E8299;
+      text-transform: capitalize;
+      min-width: 120px;
+    }
+
+    input, select {
+      border: 1px solid #efefef;
+      border-radius: 5px;
+      padding: 6px 10px;
+      outline: none !important;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all .2s ease;
+      width: 100%;
+
+      &:visited, &:focus {
+        border: 1px solid $primary-color;
+      }
+    }
+
+  }
+
+  .group-button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    button {
+      font-size: 15px;
+      border: 1px solid transparent;
+      outline: none !important;
+      font-weight: 500;
+      border-radius: 5px;
+      padding: 5px 15px;
+      transition: all .2s ease;
+
+      &.primary-button {
+        color: $white-color;
+        background: $primary-color;
+
+        &:hover {
+          background: $primary-hover-color;
+        }
+      }
+
+      &.danger-button {
+        color: $white-color;
+        background: $red-color;
+
+        &:hover {
+          background: $red-hover-color;
+        }
+      }
+    }
+  }
+
+  #update-order-form {
+    select {
+      border: none !important;
+      outline: none !important;
+      padding: 5px;
+      border-radius: 5px;
+      background: #F3F6F9
+    }
+
+    .name {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .total {
+      font-size: 20px;
+      color: $red-color;
+      font-weight: 600;
+    }
+  }
+}
