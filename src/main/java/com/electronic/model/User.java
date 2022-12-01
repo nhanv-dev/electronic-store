@@ -2,6 +2,10 @@ package com.electronic.model;
 
 import com.electronic.utils.RandomStringGenerator;
 
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class User extends AbstractModel {
     private String id, username, password, name, phone, email, address;
     private Role role;
@@ -64,7 +68,7 @@ public class User extends AbstractModel {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = this.MD5(password);
     }
 
     public String getName() {
@@ -97,5 +101,28 @@ public class User extends AbstractModel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    public String MD5(String password){
+        MessageDigest md = null;
+        String myHash="";
+
+        try {
+            md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            myHash = DatatypeConverter
+                    .printHexBinary(digest).toUpperCase();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return myHash;
+
+
+
+    }
+
+    public static void main(String[] args) {
+       System.out.println( new User().MD5("DeftBlog"));
+
     }
 }
