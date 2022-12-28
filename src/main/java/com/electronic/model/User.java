@@ -3,6 +3,7 @@ package com.electronic.model;
 import com.electronic.utils.RandomStringGenerator;
 
 import javax.xml.bind.DatatypeConverter;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -122,7 +123,7 @@ public class User extends AbstractModel {
     }
 
     public static void main(String[] args) {
-       System.out.println( new User().MD5("DeftBlog"));
+
 
     }
 }
