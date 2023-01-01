@@ -1,22 +1,46 @@
 package com.electronic.model;
 
 public class Bill {
-    private String name_product;
-    private String price_product;
-    private int quantity_product;
+    private String nameProduct;
+    private String priceProduct;
+    private int quantityProduct;
 
-    public Bill(String name_product, String price_product, int quantity_product) {
-        this.name_product = name_product;
-        this.price_product = price_product;
-        this.quantity_product = quantity_product;
+    public Bill(String nameProduct, String priceProduct, int quantityProduct) {
+        this.nameProduct = nameProduct;
+        this.priceProduct = priceProduct;
+        this.quantityProduct = quantityProduct;
     }
 
     @Override
     public String toString() {
         return "Bill{" +
-                "name_product='" + name_product + '\'' +
-                ", price_product='" + price_product + '\'' +
-                ", quantity_product=" + quantity_product +
+                "nameProduct='" + nameProduct + '\'' +
+                ", priceProduct='" + priceProduct + '\'' +
+                ", quantityProduct=" + quantityProduct +
                 '}';
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public String getPriceProduct() {
+        return priceProduct;
+    }
+
+    public void setPriceProduct(String priceProduct) {
+        this.priceProduct = priceProduct;
+    }
+
+    public int getQuantityProduct() {
+        return quantityProduct;
+    }
+
+    public void setQuantityProduct(int quantityProduct) {
+        this.quantityProduct = quantityProduct;
     }
 }
