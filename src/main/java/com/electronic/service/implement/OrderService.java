@@ -34,7 +34,9 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order findOne(String id) {
-        return orderDao.findOne(id);
+        Order order = orderDao.findOne(id);
+        if (order != null) order.addAllItem(findItemByOrderId(order.getId()));
+        return order;
     }
 
     @Override

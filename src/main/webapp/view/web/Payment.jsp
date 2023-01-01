@@ -25,7 +25,7 @@
 </section>
 <c:choose>
     <c:when test="${action == 'success'}">
-        a
+
     </c:when>
     <c:otherwise>
         <form class="mb-5" id="payment-page" method="post">
