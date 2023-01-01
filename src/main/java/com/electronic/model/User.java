@@ -3,7 +3,6 @@ package com.electronic.model;
 import com.electronic.utils.RandomStringGenerator;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -103,21 +102,20 @@ public class User extends AbstractModel {
     public void setAddress(String address) {
         this.address = address;
     }
-    public String MD5(String password){
+
+    public String MD5(String password) {
         MessageDigest md = null;
-        String myHash="";
+        String myHash = "";
 
         try {
             md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] digest = md.digest();
-            myHash = DatatypeConverter
-                    .printHexBinary(digest).toUpperCase();
+            myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return myHash;
-
 
 
     }

@@ -68,12 +68,14 @@ public class PaymentServlet extends HttpServlet {
                 }
             }
             order.setTotal(total);
-            orderService.insert(order);
+            order = orderService.insert(order);
             cart = new Cart();
             cart.setUserId(user.getId());
             SessionUtils.getInstance().putValue(request, "cart", cart);
+            response.sendRedirect(request.getContextPath() + "/confirm-payment/" + order.getId());
+        } else {
+            response.sendRedirect(request.getContextPath() + "/home");
         }
-        response.sendRedirect(request.getContextPath() + "/account/order");
     }
 
     private Order generateOrder(HttpServletRequest request) {

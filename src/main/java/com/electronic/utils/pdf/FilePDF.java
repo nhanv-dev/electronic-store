@@ -1,7 +1,6 @@
-package com.electronic.utils;
+package com.electronic.utils.pdf;
 
 import com.electronic.model.Bill;
-import com.electronic.model.Order;
 import com.electronic.model.OrderItem;
 import com.electronic.model.Product;
 import com.itextpdf.io.image.ImageDataFactory;
