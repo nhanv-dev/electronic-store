@@ -65,6 +65,10 @@
                                 <div class="d-flex align-items-center gap-3">
                                     <button class="button-primary" type="submit">Lưu</button>
                                     <button class="button-light" type="reset">Hủy</button>
+                                    <button onclick="getKey()" class="button-primary"
+                                            type="button">Tải khóa
+                                    </button>
+                                    <button class="button-primary" type="button" onclick="resetKey()">Reset khóa</button>
                                 </div>
                             </div>
                         </div>
@@ -79,6 +83,35 @@
 <c:import url="/components/web/modal/ProductModal.jsp"/>
 <%@ include file="/common/web/script.jsp" %>
 <script>
+    function getKey() {
+        axios({method: 'get', url: `${pageContext.request.contextPath}/download-key`, responseType: 'blob'})
+            .then(response => {
+                console.log(response)
+                const href = URL.createObjectURL(response.data);
+
+                // create "a" HTML element with href to file & click
+                const link = document.createElement('a');
+                link.href = href;
+                link.setAttribute('download', 'key.txt'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+
+                // clean up "a" element & remove ObjectURL
+                document.body.removeChild(link);
+                URL.revokeObjectURL(href);
+            })
+            .catch(err => showFailToast("Đã xảy ra lỗi"))
+    }
+
+    function resetKey() {
+        axios({method: 'get', url: `${pageContext.request.contextPath}/api/reset-key`})
+            .then(response => {
+                console.log(response)
+                showSuccessToast("Đã cài đặt lại khóa")
+            })
+            .catch(err => showFailToast("Đã xảy ra lỗi"))
+    }
+
     $('#profile-form').submit(function (event) {
         event.preventDefault()
         const form = document.getElementById('profile-form');

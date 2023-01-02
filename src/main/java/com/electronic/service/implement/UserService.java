@@ -7,6 +7,9 @@ import com.electronic.model.User;
 import com.electronic.service.IUserService;
 import com.electronic.utils.Paginable;
 
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.List;
 
 public class UserService implements IUserService {
@@ -26,6 +29,11 @@ public class UserService implements IUserService {
     @Override
     public User findOne(String id) {
         return userDao.findOne(id);
+    }
+
+    @Override
+    public KeyPair findKey(String id) {
+        return userDao.findKey(id);
     }
 
     @Override
@@ -56,5 +64,10 @@ public class UserService implements IUserService {
     @Override
     public int countByRole(String roleId) {
         return userDao.countByRole(roleId);
+    }
+
+    @Override
+    public void updateKey(PublicKey publicKey, PrivateKey privateKey, String id) {
+        userDao.updateKey(publicKey, privateKey, id);
     }
 }

@@ -1,9 +1,13 @@
 package com.electronic.service;
 
-import com.electronic.model.Order;
 import com.electronic.model.User;
+import com.electronic.service.implement.UserService;
 import com.electronic.utils.Paginable;
+import com.electronic.utils.digital_signature.KeyPairUtils;
 
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.List;
 
 public interface IUserService {
@@ -24,4 +28,9 @@ public interface IUserService {
     void delete(String id);
 
     int countByRole(String roleId);
+
+    void updateKey(PublicKey publicKey, PrivateKey privateKey, String id);
+
+    KeyPair findKey(String id);
+
 }
