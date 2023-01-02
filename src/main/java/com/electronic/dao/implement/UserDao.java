@@ -118,7 +118,7 @@ public class UserDao extends AbstractDao<User> implements IUserDao {
         joiner.add("where user_id = ?");
         byte[] publicKeyByte = publicKey.getEncoded();
         byte[] privateKeyByte = privateKey.getEncoded();
-        update(joiner.toString(),publicKeyByte, privateKeyByte, id);
+        update(joiner.toString(), publicKeyByte, privateKeyByte, id);
     }
 
     @Override
@@ -132,10 +132,8 @@ public class UserDao extends AbstractDao<User> implements IUserDao {
                 KeyFactory kf = KeyFactory.getInstance("DSA");
                 PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(result.get(0).getPrivateKey());
                 PrivateKey privKey = kf.generatePrivate(keySpecPKCS8);
-
                 X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(result.get(0).getPublicKey());
                 DSAPublicKey pubKey = (DSAPublicKey) kf.generatePublic(keySpecX509);
-
                 return new KeyPair(pubKey, privKey);
             } catch (Exception e) {
                 e.printStackTrace();

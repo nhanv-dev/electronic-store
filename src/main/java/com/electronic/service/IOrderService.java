@@ -8,6 +8,7 @@ import java.util.List;
 public interface IOrderService {
 
     List<Order> findAll();
+    List<Order> findByUser(String id);
 
     List<Order> findByUserAndStatus(String userId, String status);
 

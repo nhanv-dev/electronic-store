@@ -20,6 +20,12 @@ public class OrderDao extends AbstractDao<Order> implements IOrderDao {
     }
 
     @Override
+    public List<Order> findByUser(String id) {
+        String sql = "select * from orders inner join order_status on orders.order_status = order_status.id where user_id = ?";
+        return query(sql, new OrderMapper(), id);
+    }
+
+    @Override
     public List<Order> findByUserAndStatus(String userId, String status) {
         StringJoiner joiner = new StringJoiner(" ");
         joiner.add("select * from orders");
