@@ -92,11 +92,22 @@ public class DSASignature {
 
     public static void main(String[] args) throws Exception {
 
+<<<<<<< HEAD
+        PublicKey publicKey = KeyPairUtils.getPublicKey();
+//        PrivateKey privateKey = KeyPairUtils.getPrivateKey();
+
+//        KeyWriter.writePublicKey("D:\\public.key", publicKey.getEncoded());
+//        KeyWriter.writePrivateKey("D:\\private.key", privateKey.getEncoded());
+
+//        publicKey = KeyReader.readPublicKey("D:\\public.key");
+        PrivateKey privateKey = KeyReader.readPrivateKey("D:\\private.key");
+=======
         PrivateKey privateKey = KeyReader.readPrivateKey("C:\\Users\\nhanv\\Downloads\\key.txt");
         String src = "C:\\Users\\nhanv\\Downloads\\hoa-don.pdf";
         String dest = "C:\\Users\\nhanv\\Downloads\\signed.pdf";
 
         IUserService userService = new UserService();
+>>>>>>> 77ecc6f03ff312dfeeebab7fb6c00d60a5f68e9c
 
         DSASignature.sign(src, dest, privateKey);
     }
