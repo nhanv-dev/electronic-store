@@ -163,7 +163,7 @@ public class ButtonComponent extends JButton {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-//			currentStyle.setBackgroundPress(style.backgroundPress);
+			// TODO Auto-generated method stub
 		}
 
 		@Override
