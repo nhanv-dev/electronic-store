@@ -21,7 +21,6 @@ import java.util.StringTokenizer;
 
 public class FilePDF {
 
-    private Document document;
     private PdfReader reader;
     private String textFromPage = null;
     private String name;
@@ -30,15 +29,14 @@ public class FilePDF {
     private ArrayList<Bill> listProduct = new ArrayList<>();
 
 
-    public String createPdf(String path, String name, String address, String phone, String email, ArrayList<OrderItem> listItems) {
-        PdfFont vn = null;
+    public static String createPdf(String path, String name, String address, String phone, String email, double total, ArrayList<OrderItem> listItems) {
         try {
-            vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
+            PdfFont vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
 
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             pdfDocument.addNewPage();
-            document = new Document(pdfDocument);
+            Document document = new Document(pdfDocument);
 
 
             //viết
@@ -50,27 +48,22 @@ public class FilePDF {
             document.add(new Paragraph("Họ và tên: " + name).setFont(vn));
             document.add(new Paragraph("Địa chỉ: " + address).setFont(vn));
             document.add(new Paragraph("Số điện thoại: " + phone).setFont(vn));
-            document.add(new Paragraph("Gmail: " + email).setFont(vn));
+            document.add(new Paragraph("Email: " + email).setFont(vn));
 
 
             //table
             float columnWith[] = {50f, 250f, 120f, 100f};
             Table table = new Table(columnWith);
 
-            Cell cell_11 = new Cell();
-
-
             // Code 2
             table.addCell("STT").setFont(vn).setTextAlignment(TextAlignment.CENTER);
             table.addCell("Tên sản phẩm").setFont(vn).setTextAlignment(TextAlignment.CENTER);
             table.addCell("Giá").setFont(vn).setTextAlignment(TextAlignment.CENTER);
             table.addCell("Số lượng").setFont(vn).setTextAlignment(TextAlignment.CENTER);
-            int sum = 0;
             // Code 3
             int i = 1;
             for (OrderItem o : listItems) {
                 BigDecimal bigDecimal = new BigDecimal(String.valueOf(o.getProduct().getPrice()));
-                sum += bigDecimal.intValue() * o.getQuantity();
                 table.addCell(String.valueOf(i++)).setTextAlignment(TextAlignment.CENTER);
                 table.addCell(o.getProduct().getName()).setTextAlignment(TextAlignment.CENTER);
                 table.addCell(String.valueOf(o.getProduct().getPrice())).setTextAlignment(TextAlignment.CENTER);
@@ -80,10 +73,7 @@ public class FilePDF {
             }
 
             document.add(table);
-            document.add(new Paragraph("Tổng tiền: " + sum).setFont(vn).add(" Vnđ"));
-            com.itextpdf.layout.element.Image img = new Image(ImageDataFactory.create("D:\\ProjectATBM - Copy\\src\\main\\webapp\\assets\\images\\logo-sm.png"));
-            document.add(img);
-       
+            document.add(new Paragraph("Tổng tiền: " + new BigDecimal(String.valueOf(total))).setFont(vn).add(" Vnđ"));
             document.close();
         } catch (IOException e) {
             e.printStackTrace();

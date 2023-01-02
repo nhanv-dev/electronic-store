@@ -33,7 +33,8 @@ public class DownloadInvoiceServlet extends HttpServlet {
 
         String pathInfo = request.getPathInfo();
         String id = pathInfo.substring(1);
-
+        Order order = orderService.findOne(id);
+        if (order == null || !order.getUserId().equals(user.getId())) return;
         String fileName = "invoice-" + id + ".pdf";
         String appPath = request.getServletContext().getRealPath("");
         String savePath = appPath + File.separator + "assets/invoices";
@@ -42,8 +43,7 @@ public class DownloadInvoiceServlet extends HttpServlet {
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) fileSaveDir.mkdir();
         if (!storeFile.exists()) {
-            Order order = orderService.findOne(id);
-            FilePDF.createPdf(storeFile.getPath(), user.getName(), user.getAddress(), order.getTotal(), (ArrayList<OrderItem>) order.getItems());
+            FilePDF.createPdf(storeFile.getPath(), user.getName(), user.getAddress(), user.getPhone(), user.getEmail(), order.getTotal(), (ArrayList<OrderItem>) order.getItems());
         }
 
         Path path = Paths.get(storeFile.getPath());
@@ -52,7 +52,6 @@ public class DownloadInvoiceServlet extends HttpServlet {
         response.setContentType("application/octet-stream");
         response.setHeader("Content-disposition", "attachment; filename=" + fileName);
         response.setContentLength(data.length);
-
 
         InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(data));
         OutputStream outStream = response.getOutputStream();

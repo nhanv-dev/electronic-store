@@ -83,7 +83,7 @@ public class PaymentServlet extends HttpServlet {
             if (!fileSaveDir.exists()) fileSaveDir.mkdir();
             File storeFile = new File(savePath + File.separator + fileName);
 
-            FilePDF.createPdf(storeFile.getPath(), user.getName(), user.getAddress(), order.getTotal(), (ArrayList<OrderItem>) order.getItems());
+            FilePDF.createPdf(storeFile.getPath(), user.getName(), user.getAddress(), user.getPhone(), user.getEmail(), order.getTotal(), (ArrayList<OrderItem>) order.getItems());
             response.sendRedirect(request.getContextPath() + "/confirm-payment/" + order.getId());
         } else {
             response.sendRedirect(request.getContextPath() + "/home");
