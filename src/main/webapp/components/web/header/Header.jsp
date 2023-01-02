@@ -14,6 +14,12 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center py-2">
                 <div class="header-top__left">
+                    <button onclick="downloadTool()"
+                            style="border: none!important; background: transparent!important; outline: none!important;">
+                        <span class="d-flex gap-1 align-items-center justify-content-stat">
+                            Tải tool xác thực hóa đơn
+                        </span>
+                    </button>
                     <span class="d-flex gap-1 align-items-center justify-content-stat">
                         <i class="fa-solid fa-phone me-2"></i>
                         (+800) 123 456 7890
@@ -182,3 +188,28 @@
         </div>
     </div>
 </header>
+
+<script>
+    function downloadTool() {
+        axios({
+            method: 'get',
+            url: `${pageContext.request.contextPath}/download-tool`,
+            responseType: 'blob'
+        }).then(response => {
+            console.log(response)
+            const href = URL.createObjectURL(response.data);
+
+            // create "a" HTML element with href to file & click
+            const link = document.createElement('a');
+            link.href = href;
+            let filename = "tool.exe";
+            link.setAttribute('download', filename); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+
+            // clean up "a" element & remove ObjectURL
+            document.body.removeChild(link);
+            URL.revokeObjectURL(href);
+        }).catch(err => showFailToast("Đã xảy ra lỗi"))
+    }
+</script>
