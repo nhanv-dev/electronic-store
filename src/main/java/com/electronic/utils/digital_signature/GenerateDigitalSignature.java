@@ -65,6 +65,5 @@ public class GenerateDigitalSignature {
         System.out.println((PrivateKey) key);
         GenerateDigitalSignature.sign(src, dest, chain, privateKey, DigestAlgorithms.SHA256, provider.getName(),
                 PdfSigner.CryptoStandard.CMS, "Test 1", "Ghent");
-//        System.out.println(VerifyDigitalSignature.verify(dest));
     }
 }
