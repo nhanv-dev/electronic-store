@@ -195,6 +195,8 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
                 statement.setDate(i + 1, new Date(((Date) param).getTime()));
             else if (param instanceof BigDecimal)
                 statement.setBigDecimal(i + 1, (BigDecimal) param);
+            else if (param instanceof byte[])
+                statement.setBytes(i + 1, (byte[]) param);
             else
                 statement.setNull(i + 1, Types.NULL);
         }
