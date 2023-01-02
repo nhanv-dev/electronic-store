@@ -36,16 +36,17 @@ public class InvoiceConfirmationServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) SessionUtils.getInstance().getValue(request, "user");
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/");
-            return;
-        }
         String slug = request.getPathInfo();
-        if (slug == null || slug.substring(1).isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/");
+        if (user == null || slug == null || slug.substring(1).isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         Order order = orderService.findOne(slug.substring(1));
+        if (order == null || !order.getUserId().equals(user.getId()) || !order.getStatus().equalsIgnoreCase("chưa xác nhận")) {
+            response.sendRedirect(request.getContextPath() + "/account/order");
+            return;
+        }
+        System.out.println();
         request.setAttribute("order", order);
         request.getRequestDispatcher("/view/web/InvoiceConfirmation.jsp").forward(request, response);
     }
