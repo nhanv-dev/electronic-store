@@ -91,13 +91,13 @@ public class DSASignature {
         String dest = "D:\\digital_signature1.pdf";
 
         PublicKey publicKey = KeyPairUtils.getPublicKey();
-        PrivateKey privateKey = KeyPairUtils.getPrivateKey();
+//        PrivateKey privateKey = KeyPairUtils.getPrivateKey();
 
 //        KeyWriter.writePublicKey("D:\\public.key", publicKey.getEncoded());
 //        KeyWriter.writePrivateKey("D:\\private.key", privateKey.getEncoded());
 
 //        publicKey = KeyReader.readPublicKey("D:\\public.key");
-        privateKey = KeyReader.readPrivateKey("D:\\private.key");
+        PrivateKey privateKey = KeyReader.readPrivateKey("D:\\private.key");
 
         DSASignature.sign(src, dest, privateKey);
         System.out.println(DSASignature.verify(src, dest, publicKey));
