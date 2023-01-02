@@ -11,13 +11,16 @@ import com.electronic.service.implement.ProductService;
 import com.electronic.service.implement.UserService;
 import com.electronic.utils.RandomStringGenerator;
 import com.electronic.utils.SessionUtils;
+import com.electronic.utils.pdf.FilePDF;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +75,15 @@ public class PaymentServlet extends HttpServlet {
             cart = new Cart();
             cart.setUserId(user.getId());
             SessionUtils.getInstance().putValue(request, "cart", cart);
+
+            String fileName = "invoice-" + order.getId() + ".pdf";
+            String appPath = request.getServletContext().getRealPath("");
+            String savePath = appPath + File.separator + "assets/invoices";
+            File fileSaveDir = new File(savePath);
+            if (!fileSaveDir.exists()) fileSaveDir.mkdir();
+            File storeFile = new File(savePath + File.separator + fileName);
+
+            FilePDF.createPdf(storeFile.getPath(), user.getName(), user.getAddress(), order.getTotal(), (ArrayList<OrderItem>) order.getItems());
             response.sendRedirect(request.getContextPath() + "/confirm-payment/" + order.getId());
         } else {
             response.sendRedirect(request.getContextPath() + "/home");

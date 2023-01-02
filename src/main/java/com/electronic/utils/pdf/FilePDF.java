@@ -1,6 +1,7 @@
 package com.electronic.utils.pdf;
 
 import com.electronic.model.Bill;
+import com.electronic.model.OrderItem;
 import com.electronic.model.Product;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -28,8 +29,9 @@ public class FilePDF {
     private int totalPrice;
     private ArrayList<Bill> listProduct = new ArrayList<>();
 
-    public String createPdf(String path, String name, String address, ArrayList<Product> product) {
+    public static String createPdf(String path, String name, String address, double total, ArrayList<OrderItem> items) {
         try {
+            Document document;
             PdfFont vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
@@ -38,7 +40,6 @@ public class FilePDF {
 
             Paragraph title = new Paragraph("Hóa đơn điện tử").setFont(vn);
             title.setBold();
-//        title.setWidth(100);
             title.setTextAlignment(TextAlignment.CENTER);
             title.setFontSize(24);
             document.add(title);
@@ -50,19 +51,18 @@ public class FilePDF {
 
             table.addCell("STT").setFont(vn);
             table.addCell("Tên sản phẩm").setFont(vn);
-            table.addCell("Giá").setFont(vn);
             table.addCell("Số lượng").setFont(vn);
+            table.addCell("Tổng tiền").setFont(vn);
 
-            int sum = 0;
             int i = 1;
-            for (Product p : product) {
+            for (OrderItem p : items) {
                 table.addCell(String.valueOf(i++));
-                table.addCell(p.getName());
-                table.addCell(String.valueOf(p.getPrice()));
-                table.addCell(p.getSlug());
+                table.addCell(p.getProduct().getName());
+                table.addCell(String.valueOf(p.getQuantity()));
+                table.addCell(String.valueOf(p.getTotal()));
             }
             document.add(table);
-            document.add(new Paragraph("Tổng tiền: " + sum).setFont(vn));
+            document.add(new Paragraph("Tổng tiền: " + total).setFont(vn));
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,24 +127,24 @@ public class FilePDF {
     }
 
     public static void main(String[] args) {
-        ArrayList<Product> list = new ArrayList<>();
-        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)));
-        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-
-        String url = "D:\\bbb.pdf";
-
-        FilePDF pdf = new FilePDF();
-        System.out.println(pdf.createPdf(url, "Nhàn", "126/17, kp5, phường Linh Trung, Tp Thủ Đức", list));
-        pdf.readPDF(url);
-        pdf.getValue();
-        System.out.println("name:" + pdf.name);
-        System.out.println("địa chỉ:" + pdf.address);
-        System.out.println("tổng giá tiền:" + pdf.totalPrice);
-        for (Bill b : pdf.listProduct) {
-            System.out.println(b.toString());
-        }
+//        ArrayList<Product> list = new ArrayList<>();
+//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)));
+//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
+//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
+//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
+//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
+//
+//        String url = "D:\\bbb.pdf";
+//
+//        FilePDF pdf = new FilePDF();
+//        System.out.println(pdf.createPdf(url, "Nhàn", "126/17, kp5, phường Linh Trung, Tp Thủ Đức", list));
+//        pdf.readPDF(url);
+//        pdf.getValue();
+//        System.out.println("name:" + pdf.name);
+//        System.out.println("địa chỉ:" + pdf.address);
+//        System.out.println("tổng giá tiền:" + pdf.totalPrice);
+//        for (Bill b : pdf.listProduct) {
+//            System.out.println(b.toString());
+//        }
     }
 }

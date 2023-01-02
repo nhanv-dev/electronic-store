@@ -14,6 +14,9 @@
     <div class="history-order-card__header">
         <div class="d-flex align-items-center gap-4">
             <span>Trạng thái: ${order.status}</span>
+            <c:if test="${order.status == 'Chưa xác nhận'}">
+                <a href="${pageContext.request.contextPath}/confirm-payment/${order.id}">Xác nhận đơn hàng</a>
+            </c:if>
         </div>
         <p>
             Ngày: <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${order.createdAt}"/>

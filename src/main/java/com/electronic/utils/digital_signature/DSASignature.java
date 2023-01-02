@@ -1,5 +1,8 @@
 package com.electronic.utils.digital_signature;
 
+import com.electronic.service.IUserService;
+import com.electronic.service.implement.UserService;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -11,6 +14,7 @@ import java.security.*;
 import java.util.Base64;
 
 public class DSASignature {
+
     public static String hashFile(String path) {
         File file = new File(path);
         if (!file.exists()) return null;
@@ -87,20 +91,13 @@ public class DSASignature {
     }
 
     public static void main(String[] args) throws Exception {
-        String src = "D:\\bbb.pdf";
-        String dest = "D:\\digital_signature1.pdf";
 
-        PublicKey publicKey = KeyPairUtils.getPublicKey();
-        PrivateKey privateKey = KeyPairUtils.getPrivateKey();
+        PrivateKey privateKey = KeyReader.readPrivateKey("C:\\Users\\nhanv\\Downloads\\key.txt");
+        String src = "C:\\Users\\nhanv\\Downloads\\hoa-don.pdf";
+        String dest = "C:\\Users\\nhanv\\Downloads\\signed.pdf";
 
-//        KeyWriter.writePublicKey("D:\\public.key", publicKey.getEncoded());
-//        KeyWriter.writePrivateKey("D:\\private.key", privateKey.getEncoded());
-
-//        publicKey = KeyReader.readPublicKey("D:\\public.key");
-        privateKey = KeyReader.readPrivateKey("D:\\private.key");
+        IUserService userService = new UserService();
 
         DSASignature.sign(src, dest, privateKey);
-        System.out.println(DSASignature.verify(src, dest, publicKey));
-
     }
 }
