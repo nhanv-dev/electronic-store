@@ -3,13 +3,15 @@ package com.electronic.dao;
 import com.electronic.model.User;
 import com.electronic.utils.Paginable;
 
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.List;
 
 public interface IUserDao extends GenericDao<User> {
     List<User> findAll(Paginable paginable);
 
     List<User> findByRole(String roleId);
-
 
     User findOne(String id);
 
@@ -24,4 +26,8 @@ public interface IUserDao extends GenericDao<User> {
     void delete(String id);
 
     int countByRole(String roleId);
+
+    void updateKey(PublicKey publicKey, PrivateKey privateKey, String id);
+
+    KeyPair findKey(String id);
 }

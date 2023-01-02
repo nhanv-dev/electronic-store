@@ -71,7 +71,7 @@
                         <button class="nav-link w-100" id="shipping-tab" data-bs-toggle="pill"
                                 data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping"
                                 aria-selected="false">
-                            Đang vận chuyển
+                            Đã xác nhận
                         </button>
                     </li>
                     <li class="nav-item col" role="presentation">

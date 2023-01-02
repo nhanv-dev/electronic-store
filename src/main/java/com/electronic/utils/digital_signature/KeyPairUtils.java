@@ -15,6 +15,17 @@ public class KeyPairUtils {
         }
     }
 
+    public KeyPair getKeyPair() {
+        try {
+            KeyPairGenerator kpg = KeyPairGenerator.getInstance("DSA");
+            kpg.initialize(1024, new SecureRandom());
+            return kpg.generateKeyPair();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static PublicKey getPublicKey() {
         if (keyPair == null) KeyPairUtils.generateKeyPair();
         return keyPair.getPublic();

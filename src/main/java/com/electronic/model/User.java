@@ -10,6 +10,8 @@ public class User extends AbstractModel {
     private String id, username, password, name, phone, email, address;
     private Role role;
 
+    private byte[] publicKey, privateKey;
+
     public User() {
         this.id = RandomStringGenerator.randomString(5);
     }
@@ -120,8 +122,19 @@ public class User extends AbstractModel {
 
     }
 
-    public static void main(String[] args) {
+    public byte[] getPublicKey() {
+        return publicKey;
+    }
 
+    public void setPublicKey(byte[] publicKey) {
+        this.publicKey = publicKey;
+    }
 
+    public byte[] getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(byte[] privateKey) {
+        this.privateKey = privateKey;
     }
 }

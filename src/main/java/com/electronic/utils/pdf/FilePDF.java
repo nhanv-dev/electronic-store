@@ -34,6 +34,7 @@ public class FilePDF {
         PdfFont vn = null;
         try {
             vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
+
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             pdfDocument.addNewPage();
@@ -43,7 +44,6 @@ public class FilePDF {
             //viết
             Paragraph title = new Paragraph("Hóa đơn điện tử").setFont(vn);
             title.setBold();
-//        title.setWidth(100);
             title.setTextAlignment(TextAlignment.CENTER);
             title.setFontSize(24);
             document.add(title);
@@ -83,9 +83,7 @@ public class FilePDF {
             document.add(new Paragraph("Tổng tiền: " + sum).setFont(vn).add(" Vnđ"));
             com.itextpdf.layout.element.Image img = new Image(ImageDataFactory.create("D:\\ProjectATBM - Copy\\src\\main\\webapp\\assets\\images\\logo-sm.png"));
             document.add(img);
-
-
-            // đóng file
+       
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -155,131 +153,5 @@ public class FilePDF {
         }
     }
 
-    public static void main(String[] args) {
-        ArrayList<OrderItem> list = new ArrayList<>();
-        list.add(new OrderItem("OR01", "IT01", new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)), 1));
-        list.add(new OrderItem("OR01", "IT01", new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)), 1));
-        list.add(new OrderItem("OR01", "IT01", new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)), 1));
-        list.add(new OrderItem("OR01", "IT01", new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)), 1));
-
-
-//
-////        System.out.println(new FilePDF().createPdf("E:\\bbb.pdf","Nhàn", "126/17, kp5, phường Linh Trung, Tp Thủ Đức", list));
-//
-////        PdfWriter pdfWriter = null;
-////        try {
-////            pdfWriter = new PdfWriter("C:\\Users\\HP\\OneDrive\\Documents\\TIỂU LUẬN HIẾN PHÁP- NGUYỄN THỊ KIỀU DIỄM.pdf");
-////            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-////
-////            //Khai báo PdfReader với giá trị truyền vào là path của file cần đọc
-////            PdfReader reader = pdfDocument.getReader();
-////            //In ra số lượng page của file đã đọc
-//////            System.out.println("This PDF has "+reader.+" pages.");
-////            //Sử dụng PdfTextExtractor để đọc toàn bộ text ở trang 100
-////            PdfPage page =  pdfDocument.get(1);
-////            System.out.println(reader);
-////
-////            String pages = PdfTextExtractor.getTextFromPage(page);
-////            System.out.println("Page 100 Content:\n\n"+pages+"\n\n");
-////        } catch (FileNotFoundException e) {
-////            e.printStackTrace();
-////        }
-//
-//
-//        com.itextpdf.text.pdf.PdfReader reader;
-//        String textFromPage = null;
-//
-//        try {
-//
-//            reader = new com.itextpdf.text.pdf.PdfReader("E:\\bbb.pdf");
-//
-//            // pageNumber = 1
-//            textFromPage = PdfTextExtractor.getTextFromPage(reader, 1);
-//
-//            System.out.println(textFromPage);
-//
-//            reader.close();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // tên , địa chỉ, tổng
-//
-//
-//        ArrayList<Bill> listProduct = new ArrayList<>();
-//        StringTokenizer st = new StringTokenizer(textFromPage, "\n");
-//        System.out.println("Tổng số token: " + st.countTokens());
-//        while (st.hasMoreTokens()) {
-////            System.out.println(st.nextToken());
-//            String value = st.nextToken();
-//            StringTokenizer sts = new StringTokenizer(value, ":");
-//            System.out.println("Tổng số token: " + sts.countTokens());
-////                        System.out.println(st.nextToken());
-//
-//            if (sts.countTokens() == 2) {
-//                String text = sts.nextToken();
-//                if (text.equals("Địa chỉ")) {
-//                    System.out.println(sts.nextToken());
-////                    sts.nextToken();
-//                } else if (text.equals("Họ và tên")) {
-//                    System.out.println(sts.nextToken());
-//                } else if (text.equals("Tổng tiền")) {
-//                    System.out.println(sts.nextToken());
-//                } else {
-////                    st.nextToken();
-//                }
-//            } else {
-//                StringTokenizer stss = new StringTokenizer(value, " ");
-////                System.out.println(stss.countTokens());
-////                if (stss.countTokens() == 3) {
-////                    listProduct.add(new Bill(stss.nextToken(), stss.nextToken(), Integer.parseInt(stss.nextToken())));
-////
-////                }
-//
-////                listProduct.add(new Bill(stss.nextToken(),stss.nextToken(),Integer.parseInt(stss.nextToken())));
-//            }
-//
-//
-////            while (sts.hasMoreTokens()) {
-////                if (st.nextToken().equals("Họ và tên")) {
-////                    System.out.println("aaaa");
-//////
-////                }
-////            }
-////            System.out.println(st.nextToken(":"));
-////
-//        }
-//
-//
-////        String url = "E:\\bb.pdf";
-////        // Đọc dữ liệu từ File với Scanner
-////        FileInputStream fileInputStream = new FileInputStream(url);
-////        Scanner scanner = new Scanner(fileInputStream);
-////
-////        try {
-////            while (scanner.hasNextLine()) {
-////                System.out.println(scanner.nextLine());
-////            }
-////        } finally {
-////            try {
-////                scanner.close();
-////                fileInputStream.close();
-////            } catch (IOException ex) {
-////
-////            }
-////        }
-        FilePDF pdf = new FilePDF();
-        System.out.println(pdf.createPdf("E:\\bbb.pdf", "Huỳnh Quốc Nhàn", "126/17, kp5, phường Linh Trung, Tp Thủ Đức", "013423432432", "1234@gmail.com,", list));
-        pdf.readPDF("E:\\bbb.pdf");
-        pdf.getValue();
-        System.out.println("name:" + pdf.name);
-        System.out.println("địa chỉ:" + pdf.address);
-        System.out.println("tổng giá tiền:" + pdf.totalPrice);
-        for (Bill b : pdf.listProduct) {
-            System.out.println(b.toString());
-        }
-
-    }
 
 }

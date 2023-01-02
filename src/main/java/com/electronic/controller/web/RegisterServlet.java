@@ -6,6 +6,7 @@ import com.electronic.service.implement.UserService;
 import com.electronic.utils.RandomStringGenerator;
 import com.electronic.utils.ReadUtils;
 import com.electronic.utils.RoleUtils;
+import com.electronic.utils.digital_signature.KeyPairUtils;
 import com.google.gson.JsonObject;
 import org.json.simple.JSONObject;
 
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 @WebServlet(name = "Register", value = "/signup")
 public class RegisterServlet extends HttpServlet {
@@ -45,6 +49,8 @@ public class RegisterServlet extends HttpServlet {
             user.setEmail((String) jasonObject.get("email"));
             user.setRole(RoleUtils.customer);
             userService.insert(user);
+            KeyPair keyPair = new KeyPairUtils().getKeyPair();
+            userService.updateKey(keyPair.getPublic(), keyPair.getPrivate(), user.getId());
             json.addProperty("redirect", request.getContextPath() + "/login");
             response.setStatus(200);
         }
