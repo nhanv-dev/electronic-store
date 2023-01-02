@@ -97,11 +97,6 @@ public class view extends JFrame {
 		container.add(part4);
 		this.add(container);
 
-//        JPanel part5= new JPanel();
-//        downloadFile = new JButton("Tải file về máy");
-//        part5.add(downloadFile);
-//        this.add(part5);
-
 		upPDF.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

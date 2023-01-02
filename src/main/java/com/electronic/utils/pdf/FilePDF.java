@@ -33,11 +33,11 @@ public class FilePDF {
         try {
             PdfFont vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
 
+
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             pdfDocument.addNewPage();
             Document document = new Document(pdfDocument);
-
 
             //viết
             Paragraph title = new Paragraph("Hóa đơn điện tử").setFont(vn);
@@ -50,7 +50,6 @@ public class FilePDF {
             document.add(new Paragraph("Số điện thoại: " + phone).setFont(vn));
             document.add(new Paragraph("Email: " + email).setFont(vn));
 
-
             //table
             float columnWith[] = {50f, 250f, 120f, 100f};
             Table table = new Table(columnWith);
@@ -60,6 +59,7 @@ public class FilePDF {
             table.addCell("Tên sản phẩm").setFont(vn).setTextAlignment(TextAlignment.CENTER);
             table.addCell("Giá").setFont(vn).setTextAlignment(TextAlignment.CENTER);
             table.addCell("Số lượng").setFont(vn).setTextAlignment(TextAlignment.CENTER);
+
             // Code 3
             int i = 1;
             for (OrderItem o : listItems) {
@@ -68,59 +68,40 @@ public class FilePDF {
                 table.addCell(o.getProduct().getName()).setTextAlignment(TextAlignment.CENTER);
                 table.addCell(String.valueOf(o.getProduct().getPrice())).setTextAlignment(TextAlignment.CENTER);
                 table.addCell(String.valueOf(o.getQuantity())).setTextAlignment(TextAlignment.CENTER);
-
-
             }
-
             document.add(table);
             document.add(new Paragraph("Tổng tiền: " + new BigDecimal(String.valueOf(total))).setFont(vn).add(" Vnđ"));
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return path;
     }
-
     public void readPDF(String path) {
         try {
             reader = new PdfReader(path);
             // pageNumber = 1
             textFromPage = PdfTextExtractor.getTextFromPage(reader, 1);
             reader.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
     public void getValue() {
         StringTokenizer st = new StringTokenizer(textFromPage, "\n");
         System.out.println("Tổng số token: " + st.countTokens());
         while (st.hasMoreTokens()) {
-//            System.out.println(st.nextToken());
-            // lấy ra giá trị token để if, else không bỏ qua dòng nào
             String valueToken = st.nextToken();
             StringTokenizer stValue = new StringTokenizer(valueToken, ":");
             System.out.println("Tổng số token: " + stValue.countTokens());
-//                        System.out.println(st.nextToken());
-
             if (stValue.countTokens() == 2) {
                 String text = stValue.nextToken();
                 if (text.equals("Địa chỉ")) {
                     this.address = stValue.nextToken();
-//                    System.out.println(stValue.nextToken());
-//                    stValue.nextToken();
                 } else if (text.equals("Họ và tên")) {
                     this.name = stValue.nextToken();
-//                    System.out.println(stValue.nextToken());
                 } else if (text.equals("Tổng tiền")) {
-//                    totalPrice = Integer.parseInt(stValue.nextToken().trim());
                     this.totalPrice = stValue.nextToken().trim();
-
-//                    System.out.println(stValue.nextToken());
                 } else {
                     st.nextToken();
                 }
@@ -130,18 +111,13 @@ public class FilePDF {
                 if (stItem.countTokens() == 4) {
                     if (stItem.nextToken().equals("Hóa")) {
                         System.out.println("noooo");
-//                        stValue.nextToken();
                     } else {
                         System.out.println("hello");
                         st.nextToken();
                         listProduct.add(new Bill(stItem.nextToken(), stItem.nextToken(), Integer.parseInt(stItem.nextToken())));
-
                     }
                 }
-
             }
         }
     }
-
-
 }

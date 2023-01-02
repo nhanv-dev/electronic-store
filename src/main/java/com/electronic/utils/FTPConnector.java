@@ -33,7 +33,7 @@ public class FTPConnector {
             e.printStackTrace();
         }
     }
-
+// check contain File and Directory
     public boolean containFile(String remotePath) {
         try {
             FTPFile remoteFile = ftpClient.mlistFile(remotePath);
