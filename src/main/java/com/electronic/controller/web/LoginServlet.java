@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         JsonObject json = new JsonObject();
         String username = (String) jsonObject.get("username");
         String password = (String) jsonObject.get("password");
-        User user = userService.authentication(username, password);
+        User user = userService.authentication(username, new User().MD5(password));
         if (user != null) {
             SessionUtils.getInstance().putValue(request, "user", user);
             AccountUtils.handleSuccessLogin(request);

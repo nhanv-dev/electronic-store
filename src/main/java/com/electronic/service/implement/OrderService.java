@@ -26,6 +26,13 @@ public class OrderService implements IOrderService {
     }
 
     @Override
+    public List<Order> findByUser(String id) {
+        List<Order> orders = orderDao.findByUser(id);
+        for (Order order : orders) order.addAllItem(findItemByOrderId(order.getId()));
+        return orders;
+    }
+
+    @Override
     public List<Order> findByUserAndStatus(String userId, String status) {
         List<Order> orders = orderDao.findByUserAndStatus(userId, status);
         for (Order order : orders) order.addAllItem(findItemByOrderId(order.getId()));

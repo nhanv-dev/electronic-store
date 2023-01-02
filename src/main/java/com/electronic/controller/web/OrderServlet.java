@@ -24,7 +24,7 @@ public class OrderServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) SessionUtils.getInstance().getValue(request, "user");
-        List<Order> orders = orderService.findAll();
+        List<Order> orders = orderService.findByUser(user.getId());
         List<Order> waitingOrders = orderService.findByUserAndStatus(user.getId(), WAITING_ORDER);
         List<Order> shippingOrders = orderService.findByUserAndStatus(user.getId(), SHIPPING_ORDER);
         List<Order> doneOrders = orderService.findByUserAndStatus(user.getId(), DONE_ORDER);
