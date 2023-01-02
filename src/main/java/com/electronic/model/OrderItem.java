@@ -7,6 +7,13 @@ public class OrderItem {
     private Product product;
     private int quantity;
 
+    public OrderItem(String id, String orderId, Product product, int quantity) {
+        this.id = id;
+        this.orderId = orderId;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public OrderItem() {
         id = RandomStringGenerator.randomString(10);
         quantity = 0;

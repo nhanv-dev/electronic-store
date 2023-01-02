@@ -3,6 +3,7 @@ package com.electronic.utils.pdf;
 import com.electronic.model.Bill;
 import com.electronic.model.OrderItem;
 import com.electronic.model.Product;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -10,7 +11,6 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.TextAlignment;
-
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
@@ -26,18 +26,22 @@ public class FilePDF {
     private String textFromPage = null;
     private String name;
     private String address = null;
-    private int totalPrice;
+    private String totalPrice;
     private ArrayList<Bill> listProduct = new ArrayList<>();
 
-    public static String createPdf(String path, String name, String address, double total, ArrayList<OrderItem> items) {
+
+    public String createPdf(String path, String name, String address, String phone, String email, ArrayList<OrderItem> listItems) {
+        PdfFont vn = null;
         try {
-            Document document;
-            PdfFont vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
+            vn = PdfFontFactory.createFont("fonts/vuArial.ttf");
+
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             pdfDocument.addNewPage();
             document = new Document(pdfDocument);
 
+
+            //viết
             Paragraph title = new Paragraph("Hóa đơn điện tử").setFont(vn);
             title.setBold();
             title.setTextAlignment(TextAlignment.CENTER);
@@ -45,28 +49,46 @@ public class FilePDF {
             document.add(title);
             document.add(new Paragraph("Họ và tên: " + name).setFont(vn));
             document.add(new Paragraph("Địa chỉ: " + address).setFont(vn));
+            document.add(new Paragraph("Số điện thoại: " + phone).setFont(vn));
+            document.add(new Paragraph("Gmail: " + email).setFont(vn));
 
-            float[] columnWith = {10f, 200f, 80f, 100f};
+
+            //table
+            float columnWith[] = {50f, 250f, 120f, 100f};
             Table table = new Table(columnWith);
 
-            table.addCell("STT").setFont(vn);
-            table.addCell("Tên sản phẩm").setFont(vn);
-            table.addCell("Số lượng").setFont(vn);
-            table.addCell("Tổng tiền").setFont(vn);
+            Cell cell_11 = new Cell();
 
+
+            // Code 2
+            table.addCell("STT").setFont(vn).setTextAlignment(TextAlignment.CENTER);
+            table.addCell("Tên sản phẩm").setFont(vn).setTextAlignment(TextAlignment.CENTER);
+            table.addCell("Giá").setFont(vn).setTextAlignment(TextAlignment.CENTER);
+            table.addCell("Số lượng").setFont(vn).setTextAlignment(TextAlignment.CENTER);
+            int sum = 0;
+            // Code 3
             int i = 1;
-            for (OrderItem p : items) {
-                table.addCell(String.valueOf(i++));
-                table.addCell(p.getProduct().getName());
-                table.addCell(String.valueOf(p.getQuantity()));
-                table.addCell(String.valueOf(p.getTotal()));
+            for (OrderItem o : listItems) {
+                BigDecimal bigDecimal = new BigDecimal(String.valueOf(o.getProduct().getPrice()));
+                sum += bigDecimal.intValue() * o.getQuantity();
+                table.addCell(String.valueOf(i++)).setTextAlignment(TextAlignment.CENTER);
+                table.addCell(o.getProduct().getName()).setTextAlignment(TextAlignment.CENTER);
+                table.addCell(String.valueOf(o.getProduct().getPrice())).setTextAlignment(TextAlignment.CENTER);
+                table.addCell(String.valueOf(o.getQuantity())).setTextAlignment(TextAlignment.CENTER);
+
+
             }
+
             document.add(table);
-            document.add(new Paragraph("Tổng tiền: " + total).setFont(vn));
+            document.add(new Paragraph("Tổng tiền: " + sum).setFont(vn).add(" Vnđ"));
+            com.itextpdf.layout.element.Image img = new Image(ImageDataFactory.create("D:\\ProjectATBM - Copy\\src\\main\\webapp\\assets\\images\\logo-sm.png"));
+            document.add(img);
+       
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         return path;
     }
@@ -77,6 +99,7 @@ public class FilePDF {
             // pageNumber = 1
             textFromPage = PdfTextExtractor.getTextFromPage(reader, 1);
             reader.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,35 +113,39 @@ public class FilePDF {
 //            System.out.println(st.nextToken());
             // lấy ra giá trị token để if, else không bỏ qua dòng nào
             String valueToken = st.nextToken();
-            StringTokenizer sts = new StringTokenizer(valueToken, ":");
-            System.out.println("Tổng số token: " + sts.countTokens());
+            StringTokenizer stValue = new StringTokenizer(valueToken, ":");
+            System.out.println("Tổng số token: " + stValue.countTokens());
 //                        System.out.println(st.nextToken());
 
-            if (sts.countTokens() == 2) {
-                String text = sts.nextToken();
+            if (stValue.countTokens() == 2) {
+                String text = stValue.nextToken();
                 if (text.equals("Địa chỉ")) {
-                    address = sts.nextToken();
-//                    System.out.println(sts.nextToken());
-//                    sts.nextToken();
+                    this.address = stValue.nextToken();
+//                    System.out.println(stValue.nextToken());
+//                    stValue.nextToken();
                 } else if (text.equals("Họ và tên")) {
-                    name = sts.nextToken();
-//                    System.out.println(sts.nextToken());
+                    this.name = stValue.nextToken();
+//                    System.out.println(stValue.nextToken());
                 } else if (text.equals("Tổng tiền")) {
-                    totalPrice = Integer.parseInt(sts.nextToken().trim());
-//                    System.out.println(sts.nextToken());
+//                    totalPrice = Integer.parseInt(stValue.nextToken().trim());
+                    this.totalPrice = stValue.nextToken().trim();
+
+//                    System.out.println(stValue.nextToken());
                 } else {
                     st.nextToken();
                 }
             } else {
-                StringTokenizer stss = new StringTokenizer(valueToken, " ");
-                System.out.println(stss.countTokens());
-                if (stss.countTokens() == 4) {
-                    if (stss.nextToken().equals("Hóa")) {
+                StringTokenizer stItem = new StringTokenizer(valueToken, " ");
+                System.out.println(stItem.countTokens());
+                if (stItem.countTokens() == 4) {
+                    if (stItem.nextToken().equals("Hóa")) {
                         System.out.println("noooo");
-//                        sts.nextToken();
+//                        stValue.nextToken();
                     } else {
+                        System.out.println("hello");
                         st.nextToken();
-                        listProduct.add(new Bill(stss.nextToken(), stss.nextToken(), Integer.parseInt(stss.nextToken())));
+                        listProduct.add(new Bill(stItem.nextToken(), stItem.nextToken(), Integer.parseInt(stItem.nextToken())));
+
                     }
                 }
 
@@ -126,25 +153,5 @@ public class FilePDF {
         }
     }
 
-    public static void main(String[] args) {
-//        ArrayList<Product> list = new ArrayList<>();
-//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(24343)));
-//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-//        list.add(new Product("Pd01", "tivi", "tivitive", "43534", "5435", null, null, null, new BigDecimal(324343)));
-//
-//        String url = "D:\\bbb.pdf";
-//
-//        FilePDF pdf = new FilePDF();
-//        System.out.println(pdf.createPdf(url, "Nhàn", "126/17, kp5, phường Linh Trung, Tp Thủ Đức", list));
-//        pdf.readPDF(url);
-//        pdf.getValue();
-//        System.out.println("name:" + pdf.name);
-//        System.out.println("địa chỉ:" + pdf.address);
-//        System.out.println("tổng giá tiền:" + pdf.totalPrice);
-//        for (Bill b : pdf.listProduct) {
-//            System.out.println(b.toString());
-//        }
-    }
+
 }
