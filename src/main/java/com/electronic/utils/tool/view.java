@@ -41,22 +41,17 @@ public class view extends JFrame {
 
 	private void init() {
 		setTitle("Công cụ ký hóa đơn");
-//        this.setLayout(new GridLayout(4,1));
 		this.setSize(diBorder);
-
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-
 	}
 
 	private void shows() {
-
 		JPanel container= new JPanel();
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 		container.setBorder(new EmptyBorder(20,15,1,5));
 
-		
 		JPanel part2 = new JPanel();
 		part2.setPreferredSize(new Dimension(350,30));
 		upPDF = new ButtonComponent("Chọn hóa đơn", ButtonComponent.ButtonStyle.PRIMARY);
@@ -67,7 +62,6 @@ public class view extends JFrame {
 		part2.add(upPDF);
 		part2.add(jlPdf);
 
-
 		JPanel part3 = new JPanel();
 		part3.setPreferredSize(new Dimension(350,30));
 		upPrivateKey = new ButtonComponent("Chọn khóa bí mật", ButtonComponent.ButtonStyle.PRIMARY);
@@ -77,21 +71,12 @@ public class view extends JFrame {
 		part3.add(upPrivateKey);
 		part3.add(jlPrivateKey);
 		
-		
-	
 		JPanel part4 = new JPanel();
 		part4.setPreferredSize(new Dimension(350,30));
 		sign = new ButtonComponent("Ký và tải về máy", ButtonComponent.ButtonStyle.PRIMARY);
 		sign.setPreferredSize(new Dimension(150,30));
-//		jlDownload = new JLabel("");
-//		jlDownload.setPreferredSize(new Dimension(200,30));
-
 		part4.add(sign);
-//		part4.add(jlDownload);
 
-		
-		
-		
 		container.add(part2);
 		container.add(part3);
 		container.add(part4);
@@ -111,7 +96,6 @@ public class view extends JFrame {
 						pathPdf = null;
 					}
 				}
-
 			}
 		});
 		upPrivateKey.addActionListener(new ActionListener() {
@@ -133,9 +117,7 @@ public class view extends JFrame {
 						showMessageErrol("Khóa không tồn tại", "Thông báo lỗi");
 						privateKey=null;
 					}
-
 				}
-
 			}
 		});
 
@@ -158,61 +140,40 @@ public class view extends JFrame {
 				} catch (Exception e1) {
 					showMessageErrol("Ký hóa đơn thất bại", "Thông báo lỗi");
 				}
-
 			}
 		});
-
 		showContext();
 		this.setVisible(true);
-
 	}
 
 	private void showContext() {
-
 		this.setVisible(true);
-
 	}
 
 	private JPanel setJPenalKey() {
-
 		return jpKey;
 	}
 
 	private JPanel setPanelCrypt() {
-
 		return jpCrypt;
-
 	}
 
 	private void showMessageErrol(String message, String title) {
 		JOptionPane.showMessageDialog(this, message, title, JOptionPane.ERROR_MESSAGE);
-
 	}
+	
 	private void showMessageSuccess(String message, String title) {
 		JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
-
 	}
+
 	private String getPath(String path) {
 		int index=path.lastIndexOf(".");
 		String name= path.substring(0, index)+"-sign.pdf";
-
 		return name;
-		
 	}
 	
-
 	public static void main(String[] args) {
 		view main = new view();
 		main.show();
-//		JButton b= new JButton();
-//		JFrame mainFrame = new JFrame("Vi du JMenuBar trong Java Swing");
-//		mainFrame.getContentPane().setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));;
-////		mainFrame.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-//		mainFrame.add(b);
-//		mainFrame.setSize(diBorder);
-////		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		mainFrame.setVisible(true);
-
 	}
-
 }
