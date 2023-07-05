@@ -191,51 +191,6 @@
     </div>
 </section>
 
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="banner">
-                    <img src="https://demo.webdigify.com/OPC01/OPC012_gobazar/image/catalog/TopBanner-01.jpg"
-                         alt="banner">
-                    <div class="position-absolute p-4" style="left: 0;top: 0">
-                        <p style="font-size: 16px;font-weight: bold;text-transform: capitalize;color: #f50000;margin-bottom: 10px;">
-                            Giảm giá 30%
-                        </p>
-                        <h5 class="banner-title mb-0">Tablet</h5>
-                        <a href="${pageContext.request.contextPath}/category" class="banner-link">xem ngay</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="banner">
-                    <img src="https://demo.webdigify.com/OPC01/OPC012_gobazar/image/catalog/TopBanner-02.jpg"
-                         alt="banner">
-                    <div class="position-absolute p-4" style="left: 0;top: 0">
-                        <p style="font-size: 16px;font-weight: bold;text-transform: capitalize;color: #f50000;margin-bottom: 10px;">
-                            Giảm giá 30%
-                        </p>
-                        <h5 class="banner-title mb-0">Oppo Reno6 Z</h5>
-                        <a href="${pageContext.request.contextPath}/category" class="banner-link">xem ngay</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="banner">
-                    <img src="https://demo.webdigify.com/OPC01/OPC012_gobazar/image/catalog/TopBanner-03.jpg"
-                         alt="banner">
-                    <div class="position-absolute p-4" style="left: 0;top: 0">
-                        <p style="font-size: 16px;font-weight: bold;text-transform: capitalize;color: #f50000;margin-bottom: 10px;">
-                            Giảm giá 30%
-                        </p>
-                        <h5 class="banner-title mb-0">iPhone & iPod</h5>
-                        <a href="${pageContext.request.contextPath}/category" class="banner-link">Xem ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 <%@include file="/components/web/footer/Footer.jsp" %>

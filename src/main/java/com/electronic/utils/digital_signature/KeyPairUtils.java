@@ -26,13 +26,4 @@ public class KeyPairUtils {
         }
     }
 
-    public static PublicKey getPublicKey() {
-        if (keyPair == null) KeyPairUtils.generateKeyPair();
-        return keyPair.getPublic();
-    }
-
-    public static PrivateKey getPrivateKey() {
-        if (keyPair == null) KeyPairUtils.generateKeyPair();
-        return keyPair.getPrivate();
-    }
 }
