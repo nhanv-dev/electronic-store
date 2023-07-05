@@ -12,15 +12,16 @@ public class CategoryDao extends AbstractDao<Category> implements ICategoryDao {
 
     @Override
     public List<Category> findAll() {
-        String sql = "SELECT * FROM CATEGORY";
+        String sql = "SELECT * FROM category";
         return query(sql, new CategoryMapper());
     }
 
     @Override
     public Category findOne(String id) {
+
         StringJoiner joiner = new StringJoiner(" ");
-        joiner.add("SELECT * FROM CATEGORY");
-        joiner.add("WHERE CATEGORY_ID = ?");
+        joiner.add("SELECT * FROM category");
+        joiner.add("WHERE category_id = ?");
         List<Category> result = query(joiner.toString(), new CategoryMapper(), id);
         return result.isEmpty() ? null : result.get(0);
     }
@@ -28,8 +29,8 @@ public class CategoryDao extends AbstractDao<Category> implements ICategoryDao {
     @Override
     public Category findBySlug(String slug) {
         StringJoiner joiner = new StringJoiner(" ");
-        joiner.add("SELECT * FROM CATEGORY");
-        joiner.add("WHERE CATEGORY_SLUG = ?");
+        joiner.add("SELECT * FROM category");
+        joiner.add("WHERE category_slug = ?");
         List<Category> result = query(joiner.toString(), new CategoryMapper(), slug);
         return result.isEmpty() ? null : result.get(0);
     }
@@ -37,8 +38,8 @@ public class CategoryDao extends AbstractDao<Category> implements ICategoryDao {
     @Override
     public Category findByName(String name) {
         StringJoiner joiner = new StringJoiner(" ");
-        joiner.add("SELECT * FROM CATEGORY");
-        joiner.add("WHERE CATEGORY_NAME = ?");
+        joiner.add("SELECT * FROM category");
+        joiner.add("WHERE category_name = ?");
         List<Category> result = query(joiner.toString(), new CategoryMapper(), name);
         return result.isEmpty() ? null : result.get(0);
     }

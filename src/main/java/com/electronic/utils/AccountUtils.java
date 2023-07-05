@@ -13,7 +13,6 @@ import com.electronic.service.implement.WishListService;
 import javax.servlet.http.HttpServletRequest;
 
 public class AccountUtils {
-    private final static IUserService userService = new UserService();
     private final static ICartService cartService = new CartService();
     private final static IWishListService wishListService = new WishListService();
 

@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 public class ImageDao extends AbstractDao<Image> implements IImageDao {
     @Override
     public List<Image> findByProductId(String productId) {
-        String sql = "SELECT * FROM IMAGE WHERE product_id = ?";
+        String sql = "SELECT * FROM image WHERE product_id = ?";
         return query(sql, new ImageMapper(), productId);
     }
 
